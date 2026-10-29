@@ -1,0 +1,43 @@
+﻿
+<div class="grid-section">
+    <table class="grid-table">
+        <thead>
+            <tr>
+                <th>PARENTNAME</th>
+                <th>COMPONENTNAME</th>
+                <th>PARTNUMBER</th>
+                <th>TITLE</th>
+                <th>QUANTITY</th>
+                <th>TYPE</th>
+                <th>ITEM</th>
+                <th>MATERIAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (GridData == null || GridData.Count == 0)
+            {
+                <tr>
+                    <td colspan="8" class="no-data">
+                        No data available
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in GridData)
+                {
+                    <tr>
+                        <td>@Show(item.ParentName)</td>
+                        <td>@Show(item.ComponentName)</td>
+                        <td>@Show(item.PartNumber)</td>
+                        <td>@Show(item.Title)</td>
+                        <td>@(item.Quantity == 0 ? "-" : item.Quantity.ToString())</td>
+                        <td>@Show(item.Type)</td>
+                        <td>@Show(item.Item)</td>
+                        <td>@Show(item.Material)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

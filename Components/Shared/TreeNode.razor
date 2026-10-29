@@ -1,0 +1,30 @@
+﻿@using BlazorBOMManager.Models
+
+<div style="margin-left:20px; color:white;">
+
+    <div class="tree-node-row">
+
+        @if (Node.Children?.Count > 0)
+        {
+            <i class="bi @(Node.IsExpanded ? "bi-caret-down-fill" : "bi-caret-right-fill")" @onclick="Toggle" @onclick:stopPropagation="true"></i>
+        }
+        else
+        {
+            <span class="tree-icon-placeholder"></span>
+        }
+
+        <span class="tree-node-text" @onclick="HandleClick">
+            @Node.Name
+        </span>
+
+    </div>
+
+    @if (Node.IsExpanded && Node.Children?.Count > 0)
+    {
+        @foreach (var child in Node.Children)
+        {
+            <TreeNode Node="child" OnSelect="OnSelect" SelectedNode="SelectedNode" />
+        }
+    }
+
+</div>

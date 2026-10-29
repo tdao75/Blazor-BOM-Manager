@@ -1,0 +1,64 @@
+NAME,TYPE,ITEM,PART_NUMBER,TITLE,MATERIAL
+PRINTER_X1,ASSEMBLY,001,DEMO-00001,DemoPrint X1 Desktop 3D Printer,Mixed materials
+FRAME_ASSY,ASSEMBLY,002,DEMO-00002,Chassis and frame assembly,Mixed materials
+MOTION_ASSY,ASSEMBLY,003,DEMO-00003,XYZ motion assembly,Mixed materials
+EXTRUDER_ASSY,ASSEMBLY,004,DEMO-00004,Extrusion and hotend assembly,Mixed materials
+BUILD_PLATFORM_ASSY,ASSEMBLY,005,DEMO-00005,Heated build platform assembly,Mixed materials
+ELECTRONICS_ASSY,ASSEMBLY,006,DEMO-00006,Control electronics assembly,Mixed materials
+ENCLOSURE_ASSY,ASSEMBLY,007,DEMO-00007,Safety enclosure assembly,Mixed materials
+BASE_PLATE,PART,008,DEMO-00008,Base plate,Aluminum 6061
+LEFT_UPRIGHT,PART,009,DEMO-00009,Left frame upright,Aluminum 6063
+RIGHT_UPRIGHT,PART,010,DEMO-00010,Right frame upright,Aluminum 6063
+TOP_CROSSBAR,PART,011,DEMO-00011,Top frame crossbar,Aluminum 6063
+CORNER_BRACKET,PART,012,DEMO-00012,Corner joining bracket,Aluminum 6061
+M5_BOLT,PART,013,DEMO-00013,M5 socket head bolt,Steel
+M5_TNUT,PART,014,DEMO-00014,M5 sliding T-nut,Steel
+RUBBER_FOOT,PART,015,DEMO-00015,Anti-vibration foot,Rubber
+X_AXIS_ASSY,ASSEMBLY,016,DEMO-00016,X-axis carriage assembly,Mixed materials
+Y_AXIS_ASSY,ASSEMBLY,017,DEMO-00017,Y-axis gantry assembly,Mixed materials
+Z_AXIS_ASSY,ASSEMBLY,018,DEMO-00018,Z-axis lift assembly,Mixed materials
+X_LINEAR_RAIL,PART,019,DEMO-00019,X linear guide rail,Hardened steel
+X_CARRIAGE,PART,020,DEMO-00020,X carriage,Aluminum 6061
+X_STEPPER,PART,021,DEMO-00021,X-axis stepper motor,Mixed materials
+GT2_BELT,PART,022,DEMO-00022,GT2 timing belt,Reinforced rubber
+BELT_IDLER,PART,023,DEMO-00023,Timing belt idler,Steel
+Y_LINEAR_RAIL,PART,024,DEMO-00024,Y linear guide rail,Hardened steel
+Y_GANTRY,PART,025,DEMO-00025,Y gantry plate,Aluminum 6061
+Y_STEPPER,PART,026,DEMO-00026,Y-axis stepper motor,Mixed materials
+Z_LEADSCREW,PART,027,DEMO-00027,Z lead screw,Stainless steel
+Z_COUPLER,PART,028,DEMO-00028,Flexible shaft coupler,Aluminum
+Z_STEPPER,PART,029,DEMO-00029,Z-axis stepper motor,Mixed materials
+Z_BEARING,PART,030,DEMO-00030,Z linear bearing,Steel
+HOTEND_ASSY,ASSEMBLY,031,DEMO-00031,Hotend assembly,Mixed materials
+FEEDER_ASSY,ASSEMBLY,032,DEMO-00032,Filament feeder assembly,Mixed materials
+NOZZLE,PART,033,DEMO-00033,0.4 mm nozzle,Brass
+HEAT_BLOCK,PART,034,DEMO-00034,Hotend heater block,Aluminum
+HEATER_CARTRIDGE,PART,035,DEMO-00035,24 V heater cartridge,Ceramic/steel
+THERMISTOR,PART,036,DEMO-00036,Temperature sensor,Mixed materials
+HEAT_BREAK,PART,037,DEMO-00037,Thermal break,Stainless steel
+HOTEND_FAN,PART,038,DEMO-00038,Hotend cooling fan,Plastic/copper
+FEEDER_MOTOR,PART,039,DEMO-00039,Extruder stepper motor,Mixed materials
+DRIVE_GEAR,PART,040,DEMO-00040,Filament drive gear,Hardened steel
+IDLER_ARM,PART,041,DEMO-00041,Filament tension arm,Aluminum
+PTFE_TUBE,PART,042,DEMO-00042,Filament guide tube,PTFE
+M3_BOLT,PART,043,DEMO-00043,M3 socket head bolt,Steel
+BUILD_PLATE,PART,044,DEMO-00044,Removable print surface,Spring steel/PEI
+HEATED_BED,PART,045,DEMO-00045,24 V heated bed,Aluminum/PCB
+BED_INSULATION,PART,046,DEMO-00046,Bed insulation pad,Silicone foam
+LEVELING_SCREW,PART,047,DEMO-00047,Bed leveling screw,Steel
+LEVELING_SPRING,PART,048,DEMO-00048,Bed leveling spring,Steel
+CONTROL_BOX_ASSY,ASSEMBLY,049,DEMO-00049,Controller housing assembly,Mixed materials
+POWER_ASSY,ASSEMBLY,050,DEMO-00050,Power distribution assembly,Mixed materials
+MAINBOARD,PART,051,DEMO-00051,Motion control PCB,FR-4/copper
+DISPLAY,PART,052,DEMO-00052,LCD control display,Mixed materials
+CONTROL_HOUSING,PART,053,DEMO-00053,Controller housing,ABS plastic
+POWER_SUPPLY,PART,054,DEMO-00054,24 V DC power supply,Mixed materials
+POWER_SWITCH,PART,055,DEMO-00055,Power rocker switch,Plastic/copper
+FUSE_HOLDER,PART,056,DEMO-00056,Fuse holder,Plastic/copper
+WIRE_HARNESS,PART,057,DEMO-00057,Wiring harness,Copper/PVC
+LEFT_PANEL,PART,058,DEMO-00058,Left enclosure panel,Acrylic
+RIGHT_PANEL,PART,059,DEMO-00059,Right enclosure panel,Acrylic
+TOP_PANEL,PART,060,DEMO-00060,Top enclosure panel,Acrylic
+FRONT_DOOR,PART,061,DEMO-00061,Front access door,Acrylic
+DOOR_HINGE,PART,062,DEMO-00062,Door hinge,Stainless steel
+DOOR_HANDLE,PART,063,DEMO-00063,Door handle,ABS plastic

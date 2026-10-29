@@ -1,0 +1,122 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #2f343a;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.app-shell {
+    margin: 0;
+    min-height: 100vh;
+    background: #2f343a;
+    color: white;
+}
+.page-container {
+    min-height: 100vh;
+    background: #2f343a;
+    padding: 0;
+}
+.top-title {
+    text-align: center;
+    padding: 6px 0 10px 0;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    background: #23282d;
+    border-bottom: 1px solid #7b6a49;
+}
+.main-panel {
+    margin: 0;
+    padding: 20px;
+    background: #3b4045;
+    border-top: 1px solid #7b6a49;
+    border-bottom: 1px solid #7b6a49;
+}
+.tree-box {
+    width: 420px;
+    height: 320px;
+    overflow: auto;
+    background: #0f1317;
+    border: 1px solid #2c3136;
+    padding: 14px 18px;
+}
+.info-panel {
+    flex: 1;
+    padding-top: 45px;
+}
+.grid-section {
+    margin-top: 28px;
+    padding: 20px;
+    border-top: 1px solid #7b6a49;
+    background: #2f343a;
+}
+.grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #11161a;
+    color: #f2f2f2;
+}
+.grid-table th {
+    background: #000;
+    color: #fff;
+    text-align: left;
+    padding: 10px 8px;
+    border: 1px solid #384048;
+}
+.grid-table td {
+    padding: 10px 8px;
+    border: 1px solid #384048;
+}
+.grid-table tbody tr:nth-child(even) {
+    background: #151b20;
+}
+.red-text {
+    color: #ff304f;
+}
+.green-text {
+    color: #62ff62;
+}
+.action-button {
+    background: #4a4a4a;
+    color: white;
+    border: 1px solid #2f2f2f;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.action-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.tree-node-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    line-height: 1.5;
+}
+.tree-node-row:hover {
+    background: #1c2228;
+}
+.tree-icon {
+    font-size: 10px;
+    color: #ccc;
+    width: 14px;
+    cursor: pointer;
+}
+.tree-icon-placeholder {
+    width: 14px;
+    display: inline-block;
+}
+.no-data {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+.tree-box {
+    overflow: auto;
+    scrollbar-width: auto;
+    scrollbar-color: #666 #1c2228;
+}

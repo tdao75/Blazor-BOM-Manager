@@ -1,0 +1,36 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using BlazorBOMManager.Components.Grid
+@using BlazorBOMManager.Models
+@using BlazorBOMManager.Services
+@inject BomService BomService
+
+<div class="page-container">
+    <div class="top-title">Testing Functionality for Tree and Datagrid</div>
+
+    <div class="main-panel">
+        <div style="display:flex; gap:220px; align-items:flex-start;">
+            <div class="tree-box">
+                @if (tree != null && tree.Count > 0)
+                {
+                    @foreach (var node in tree)
+                    {
+                        <TreeNode Node="node" OnSelect="HandleSelect" />
+                    }
+                }
+            </div>
+
+            <div class="info-panel">
+                <p class="red-text">Parent Child Part: @parentPath</p>
+                <p class="green-text">Current Part: @selectedPart</p>
+
+                <button class="action-button" @onclick="PopulateTree" disabled="@isTreeLoaded">
+                    Populate Data in Tree
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <BomGrid GridData="gridData" />
+</div>
+
