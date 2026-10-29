@@ -7,11 +7,9 @@ namespace BlazorBOMManager.Components.Pages
     {
         private List<TreeNodeModel> tree = new();
         private List<GridRowModel> gridData = new();
-        private TreeNodeModel? selectedNode;
         private string selectedPart = "";
         private string parentPath = "";
         private bool isTreeLoaded = false;
-        private bool isGridLoaded = false;
 
         protected override void OnInitialized()
         {
@@ -29,21 +27,10 @@ namespace BlazorBOMManager.Components.Pages
 
         private void HandleSelect(TreeNodeModel node)
         {
-            selectedNode = node;
             selectedPart = node.Name;
             parentPath = node.FullPath;
 
-            //gridData = BomService.GetComponents(node);
             gridData = BomService.GetGridData(node);
-        }
-
-        private void LoadGrid()
-        {
-            if (selectedNode == null)
-                return;
-
-            gridData = BomService.GetGridData(selectedNode);
-            isGridLoaded = true;
         }
     }
 }
