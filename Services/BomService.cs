@@ -8,12 +8,15 @@ namespace BlazorBOMManager.Services
         public List<Part> Parts { get; set; }
         public List<Bom> Boms { get; set; }
         public Dictionary<string, Part> PartLookup { get; set; }
+        private readonly ILookup<string, Bom> _bomLookup;
+
         public BomService()
         {
             Parts = LoadParts("Data/part.csv");
             Boms = LoadBoms("Data/bom.csv");
 
-            PartLookup = Parts.GroupBy(p => p.Name).Select(g => g.First()).ToDictionary(p => p.Name, p => p);
+            PartLookup = Parts.GroupBy(p => p.Name.Trim(), StringComparer.OrdinalIgnoreCase).ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+            _bomLookup = Boms.ToLookup(b => b.ParentPart?.Trim() ?? "", StringComparer.OrdinalIgnoreCase);
         }
         private List<Part> LoadParts(string filePath)
         {
@@ -77,42 +80,64 @@ namespace BlazorBOMManager.Services
         }
         public List<TreeNodeModel> BuildTree()
         {
-            var rootParts = Boms.Where(b => string.IsNullOrWhiteSpace(b.ParentPart)).Select(b => b.ComponentName.Trim()).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+            var rootParts = _bomLookup[""].Select(b => b.ComponentName.Trim()).Where(name => !string.IsNullOrEmpty(name)).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
 
-            return rootParts.Select(root => BuildNode(root, "", root)).ToList();
+            return rootParts.Select(root => BuildNode(root,"", root, new HashSet<string>(StringComparer.OrdinalIgnoreCase))).ToList();
         }
-        private TreeNodeModel BuildNode(string partName, string parentName, string fullPath)
+        private TreeNodeModel BuildNode(string partName, string parentName, string fullPath, HashSet<string> visited)
         {
             var key = partName.Trim();
 
-            var children = Boms.Where(b => string.Equals(b.ParentPart?.Trim(), key, StringComparison.OrdinalIgnoreCase)).Select(b => BuildNode(b.ComponentName.Trim(), key, $"{fullPath}\\{b.ComponentName.Trim()}")).ToList();
-
-            return new TreeNodeModel
+            var node = new TreeNodeModel
             {
                 Name = key,
                 LookupKey = key,
                 ParentName = parentName,
                 FullPath = fullPath,
-                Children = children
+                Children = new List<TreeNodeModel>()
             };
+
+            // Detect circular reference
+            if (!visited.Add(key))
+            {
+                node.Name += " (Circular Reference)";
+                return node;
+            }
+
+            foreach (var bom in _bomLookup[key])
+            {
+                var childName = bom.ComponentName.Trim();
+
+                var childNode = BuildNode(childName, key, $"{fullPath}\\{childName}", visited);
+
+                node.Children.Add(childNode);
+            }
+
+            // Remove current node when returning
+            visited.Remove(key);
+
+            return node;
         }
         public List<GridRowModel> GetComponents(TreeNodeModel node)
         {
             if (node == null || string.IsNullOrWhiteSpace(node.LookupKey))
+            {
                 return new List<GridRowModel>();
+            }
 
             var key = node.LookupKey.Trim();
 
-            return Boms
-                .Where(b => string.Equals(b.ParentPart?.Trim(), key, StringComparison.OrdinalIgnoreCase))
+            return _bomLookup[key]
                 .Select(b =>
                 {
-                    PartLookup.TryGetValue((b.ComponentName ?? "").Trim(), out var part);
+                    var componentName = b.ComponentName.Trim();
+
+                    PartLookup.TryGetValue(componentName, out var part);
 
                     return new GridRowModel
                     {
                         ParentName = key,
-                        ComponentName = b.ComponentName?.Trim() ?? "",
+                        ComponentName = componentName,
                         PartNumber = part?.PartNumber ?? "",
                         Title = part?.Title ?? "",
                         Quantity = b.Quantity,
@@ -120,12 +145,14 @@ namespace BlazorBOMManager.Services
                         Item = part?.Item ?? "",
                         Material = part?.Material ?? ""
                     };
-                })
-                .ToList();           
+                }).ToList();
         }
-        public bool HasChildren(string partName)
+        public bool HasChildren(string? partName)
         {
-            return Boms.Any(b => string.Equals(b.ParentPart?.Trim(), partName?.Trim(), StringComparison.OrdinalIgnoreCase));
+            if (string.IsNullOrWhiteSpace(partName))
+                return false;
+
+            return _bomLookup.Contains(partName.Trim());
         }
         public List<GridRowModel> GetPartDetails(TreeNodeModel node)
         {
