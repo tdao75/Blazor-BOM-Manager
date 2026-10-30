@@ -133,6 +133,47 @@ The fictional dataset demonstrates multi-level manufacturing relationships witho
 - **Strongly Typed Models:** Dedicated C# classes represent BOM records, parts, tree nodes, and grid rows.
 - **LINQ and Dictionary Lookups:** Used to retrieve component relationships and part details.
 
+## BOM Tree Performance Optimization
+
+### Efficient Parent-Child Lookup
+
+The application uses `ToLookup()` to group BOM records by parent component, avoiding repeated scans of the entire BOM collection during recursive tree construction.
+
+**Benefits:**
+- Faster retrieval of child components
+- Improved scalability for larger BOM datasets
+- Efficient lookup for TreeView and DataGrid operations
+
+### Circular Reference Detection
+
+The recursive tree builder uses `HashSet<string>` to track components along the current traversal path.
+
+When a component appears again within the same path, the application detects the circular reference and stops expanding that branch.
+
+For example:
+
+`VALVE → BODY → ACTUATOR → VALVE`
+
+This prevents infinite recursion while allowing the same component to appear legitimately under different parent assemblies.
+
+### Additional Performance Considerations
+
+For production-scale datasets, potential enhancements include:
+
+- Lazy loading TreeView nodes on expansion
+- Virtualization or pagination for large grids
+- Database indexing and server-side retrieval
+- Logging and validation of malformed CSV records
+
+### Technologies
+
+- C# / .NET
+- Blazor Interactive Server
+- LINQ and `ToLookup()`
+- `HashSet<string>` for cycle detection
+- `TextFieldParser` for CSV parsing
+- In-memory BOM processing without Entity Framework
+
 ## Purpose
 
 This project demonstrates practical experience with Blazor component development, C# object-oriented programming, recursive algorithms, LINQ, and hierarchical data presentation.
